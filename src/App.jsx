@@ -27,69 +27,26 @@ function App() {
   return (
     <main className="main-container">
        
-      {/* <div className='left-side'>
+      <div className='left-side'>
+      {quizButtonsVisible && (
          <Welcome />
+      )}
          <Questions selectedQuiz={selectedQuiz} currentQuestionIndex={currentQuestionIndex}/>
       </div>
 
       <div className='right-side'>
-         <MainMenu handleQuizSelection={handleQuizSelection}/>
-         <Options selectedQuiz={selectedQuiz} currentQuestionIndex={currentQuestionIndex} handleNextQuestion={handleNextQuestion}/>
-      </div> */}
-      
-      
-      {/* <div className="quiz-buttons">
-         {data.quizzes.map((quiz, index) => (
-            <button 
-               key={index} 
-               className="quiz-button" 
-               onClick={() => handleQuizSelection(quiz)}>
-               <img src={quiz.icon} alt={quiz.title} />
-               <h1 className='heading-xs'>{quiz.title}</h1>
-            </button>
-         ))}
+         {quizButtonsVisible && (
+            <MainMenu handleQuizSelection={handleQuizSelection}/>
+         )}
+
+         <Options 
+         selectedQuiz={selectedQuiz} 
+         currentQuestionIndex={currentQuestionIndex} 
+         handleNextQuestion={handleNextQuestion}
+         quizButtonsVisible={quizButtonsVisible}
+         />
       </div>
-
-      
-      {selectedQuiz && (
-        <div className="selected-quiz">
-          <h2>{selectedQuiz.questions[currentQuestionIndex].question}</h2>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[0]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[1]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[2]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[3]}</button>
-        </div>
-      )}
-      <button onClick={handleNextQuestion}>Submit</button> */}
-
-      {quizButtonsVisible && (
-        <div className="quiz-buttons">
-         {data.quizzes.map((quiz, index) => (
-            <button 
-               key={index} 
-               className="quiz-button" 
-               onClick={() => handleQuizSelection(quiz)}>
-               <img src={quiz.icon} alt={quiz.title} />
-               <h1 className='heading-xs'>{quiz.title}</h1>
-            </button>
-         ))}
-        </div>
-      )}
-      {selectedQuiz && (
-        <div className="selected-quiz">
-          <h2>{selectedQuiz.questions[0].question}</h2>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[0]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[1]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[2]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[3]}</button>
-        </div>
-      )}
-      
-      {!quizButtonsVisible && (
-        <button onClick={handleNextQuestion}>Submit</button>
-      )}
-      
-      
+           
     </main>   
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion }) => {
+const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizButtonsVisible }) => {
   return (
    <div>
       {selectedQuiz && (
@@ -12,7 +12,9 @@ const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion }) => 
           <button>{selectedQuiz.questions[currentQuestionIndex].options[3]}</button>
         </div>
       )}
-      <button onClick={handleNextQuestion}>Submit</button>
+      {!quizButtonsVisible && (
+        <button onClick={handleNextQuestion}>Submit</button>
+      )}
    </div>
   )
 }
