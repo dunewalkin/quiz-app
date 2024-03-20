@@ -1,0 +1,16 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.quiz-buttons {
+   @include flexbox(column, flex-start, flex-start, 1.5rem);
+}
+
+.quiz-button {
+   @include width-height(100%, auto);
+   @include flexbox(row, flex-start, center, 2rem);
+   padding: 1.25rem;
+   background-color: var(--clr-background-2);
+   border-radius: 1.5rem;
+   border: transparent;
+   cursor: pointer;
+}

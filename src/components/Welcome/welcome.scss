@@ -1,0 +1,7 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.welcome-header {
+   @include flexbox(column, flex-start, flex-start, 0.5rem);
+   margin-bottom: 3rem;
+}

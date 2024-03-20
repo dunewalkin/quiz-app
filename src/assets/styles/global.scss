@@ -1,0 +1,154 @@
+@use './mixins.scss' as *;
+@import './variables';
+
+html,
+body {
+    height: 100%;
+}
+
+*, *::before, *::after {
+   box-sizing: border-box;
+}
+
+* {
+   margin: 0;
+}
+
+body {
+   line-height: 1.5;
+   -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+   display: block;
+   max-width: 100%;
+}
+
+input, button, textarea, select {
+font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+   overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   color: var(--clr-primary-1);
+}
+
+ul {
+   padding: 0;
+}
+
+.heading-xl {
+   font-family: Rubik, sans-serif;
+   font-size: 9rem;
+   font-style: normal;
+   font-weight: 500;
+   line-height: 100%;
+
+   @include mq (small) {
+      font-size: 5.5rem;
+   }
+}
+
+ .heading-l {
+   font-family: Rubik, sans-serif;
+   font-size: 4rem;
+   font-style: normal;
+   font-weight: 500;
+   line-height: 100%;
+
+   @include mq (small) {
+      font-size: 2.5rem;;
+   }
+ }
+
+ .heading-m {
+   font-family: Rubik, sans-serif;
+   font-size: 4rem;
+   font-style: normal;
+   font-weight: 300;
+   line-height: 100%;
+
+   @include mq (small) {
+      font-size: 2.5rem;;
+   }
+ }
+
+ .heading-s {
+   font-family: Rubik,sans-serif;
+   font-size: 2.25rem;
+   font-style: normal;
+   font-weight: 500;
+   line-height: 120%;
+
+   @include mq (small) {
+      font-size: 1.25rem;
+   }
+ }
+
+ .heading-xs {
+   font-family: Rubik,sans-serif;
+   font-size: 1.75rem;
+   font-style: normal;
+   font-weight: 500;
+   line-height: 100%; 
+
+   @include mq (small) {
+      font-size: 0.875rem;
+   }
+ }
+
+p {
+   font-size: 1.5rem;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 150%;
+   color: var(--clr-primary-2);
+
+   @include mq (small) {
+      font-size: 1.125rem;
+   }
+}
+
+.body-s {
+   font-size: 1.25rem;
+   font-style: italic;
+   font-weight: 400;
+   line-height: 150%; 
+   color: var(--clr-primary-2);
+}
+
+ body {
+   font-family: Rubik,sans-serif;
+   background: var(--clr-background-1);
+   background-image: url(../images/pattern-background-desktop-light.svg);
+ }
+
+
+#root {
+   @include width-height(100%, 100%);
+   @include flexbox(column, center, center, 0);
+   // width: 100%;
+   // min-height: 100vh;
+
+   @include mq (small) {
+      height: auto;
+   }
+ }
+
+.main-container {
+   width: 72.3125rem;
+   @include flexbox(row, space-between, flex-start, 0);
+}
+
+.left-side {
+   width: 29.0625rem;
+}
+
+.right-side {
+   width: 35.25rem;
+}
+
+
