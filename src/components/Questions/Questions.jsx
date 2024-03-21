@@ -4,7 +4,7 @@ const Questions = ({ selectedQuiz, currentQuestionIndex }) => {
   return (
     <div>
       {selectedQuiz && (
-         <h2>{selectedQuiz.questions[currentQuestionIndex].question}</h2>
+         <h1 className='heading-s'>{selectedQuiz.questions[currentQuestionIndex].question}</h1>
       )}
     </div>
   )

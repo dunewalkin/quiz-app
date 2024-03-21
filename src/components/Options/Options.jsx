@@ -4,16 +4,42 @@ const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizB
   return (
    <div>
       {selectedQuiz && (
-        <div className="selected-quiz">
-          <h2>{selectedQuiz.questions[currentQuestionIndex].question}</h2>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[0]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[1]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[2]}</button>
-          <button>{selectedQuiz.questions[currentQuestionIndex].options[3]}</button>
-        </div>
+         <div className="quiz-buttons">
+            <button className='quiz-button'>
+               <div className='option'>
+                  <h1 className='heading-xs'>A</h1>
+               </div>
+               <h1 className='heading-xs'>{selectedQuiz.questions[currentQuestionIndex].options[0]}</h1>
+            </button>
+
+            <button className='quiz-button'>
+               <div className='option'>
+                  <h1 className='heading-xs'>B</h1>
+               </div>
+               <h1 className='heading-xs'>{selectedQuiz.questions[currentQuestionIndex].options[1]}</h1>
+            </button>
+
+            <button className='quiz-button'>
+               <div className='option'>
+                  <h1 className='heading-xs'>C</h1>
+               </div>
+               <h1 className='heading-xs'>{selectedQuiz.questions[currentQuestionIndex].options[2]}</h1>
+            </button>
+
+            <button className='quiz-button'>
+               <div className='option'>
+                  <h1 className='heading-xs'>D</h1>
+               </div>
+               <h1 className='heading-xs'>{selectedQuiz.questions[currentQuestionIndex].options[3]}</h1>
+            </button>
+         </div>
       )}
       {!quizButtonsVisible && (
-        <button onClick={handleNextQuestion}>Submit</button>
+        <button 
+        className='submit-btn'
+        onClick={handleNextQuestion}>
+         <h1 className='heading-xs'>Submit</h1>
+         </button>
       )}
    </div>
   )

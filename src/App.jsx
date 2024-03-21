@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './assets/styles/fonts.scss'
 import './assets/styles/global.scss'
-import data from '../data.json';
 import Welcome from './components/Welcome/Welcome';
 import MainMenu from './components/MainMenu/MainMenu';
 import Questions from './components/Questions/Questions';
@@ -21,7 +20,7 @@ function App() {
 
   const handleNextQuestion = () => {
    setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-   // console.log(selectedQuiz.questions[currentQuestionIndex].answer);
+   console.log(selectedQuiz.questions[currentQuestionIndex].answer);
   };
 
   return (
