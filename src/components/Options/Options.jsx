@@ -1,46 +1,41 @@
-import React from 'react'
+import React from 'react';
+import iconError from '../../assets/images/icon-error.svg';
+import './options.scss';
 
-const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizButtonsVisible }) => {
+const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizButtonsVisible, handleOptionSelect, submitClicked, showErrorMessage }) => {
   return (
-   <div>
+   <div className='options-section'>
       {selectedQuiz && (
          <div className="quiz-buttons">
-            <button className='quiz-button'>
+            {selectedQuiz.questions[currentQuestionIndex].options.map((option, index) => (
+            <button className='quiz-button'
+               key={index} 
+               onClick={() => handleOptionSelect(option)}
+            > 
                <div className='option'>
-                  <h1 className='heading-xs'>A</h1>
+                  <h1 className='heading-xs'>{String.fromCharCode(65 + index)}</h1>
                </div>
-               <h1 className='heading-xs'>{selectedQuiz.questions[currentQuestionIndex].options[0]}</h1>
+               <h1 className='heading-xs'>{option}</h1>
             </button>
-
-            <button className='quiz-button'>
-               <div className='option'>
-                  <h1 className='heading-xs'>B</h1>
-               </div>
-               <h1 className='heading-xs'>{selectedQuiz.questions[currentQuestionIndex].options[1]}</h1>
-            </button>
-
-            <button className='quiz-button'>
-               <div className='option'>
-                  <h1 className='heading-xs'>C</h1>
-               </div>
-               <h1 className='heading-xs'>{selectedQuiz.questions[currentQuestionIndex].options[2]}</h1>
-            </button>
-
-            <button className='quiz-button'>
-               <div className='option'>
-                  <h1 className='heading-xs'>D</h1>
-               </div>
-               <h1 className='heading-xs'>{selectedQuiz.questions[currentQuestionIndex].options[3]}</h1>
-            </button>
+         ))}
          </div>
       )}
       {!quizButtonsVisible && (
-        <button 
-        className='submit-btn'
-        onClick={handleNextQuestion}>
-         <h1 className='heading-xs'>Submit</h1>
+         <button 
+            className='submit-btn'
+            onClick={handleNextQuestion}>
+            <h1 className='heading-xs'>{submitClicked ? "Next Question" : "Submit Answer"}</h1>
          </button>
       )}
+
+      {showErrorMessage && (
+         <div className='error-message'>
+            <img src={iconError} alt="Error icon" />
+            <p>Please select an answer</p>
+         </div> 
+      )}
+      
+      
    </div>
   )
 }

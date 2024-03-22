@@ -12,6 +12,7 @@ function App() {
    const [quizButtonsVisible, setQuizButtonsVisible] = useState(true);
    const [selectedOption, setSelectedOption] = useState(null); // Состояние для хранения выбранной пользователем опции
    const [submitClicked, setSubmitClicked] = useState(false); // Состояние для отслеживания нажатия на кнопку "Submit"
+   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
    const handleQuizSelection = (quiz) => {
       setSelectedQuiz(quiz);
@@ -19,6 +20,7 @@ function App() {
       setQuizButtonsVisible(false);
       setSelectedOption(null); // Сброс выбранной опции при выборе нового теста
       setSubmitClicked(false); // Сброс состояния нажатия на кнопку "Submit" при выборе нового теста
+      setShowErrorMessage(false);
    };
 
    const handleOptionSelect = (option) => {
@@ -46,6 +48,7 @@ function App() {
          }
       } else {
          // Если пользователь не выбрал ответ, вы можете вывести сообщение или предпринять другие действия
+         setShowErrorMessage(true);
          console.log("Выберите ответ перед переходом к следующему вопросу");
       }
    };
@@ -70,6 +73,9 @@ function App() {
          currentQuestionIndex={currentQuestionIndex} 
          handleNextQuestion={handleNextQuestion}
          quizButtonsVisible={quizButtonsVisible}
+         handleOptionSelect={handleOptionSelect}
+         submitClicked={submitClicked}
+         showErrorMessage={showErrorMessage}
          />
       </div>
            

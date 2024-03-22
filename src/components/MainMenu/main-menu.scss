@@ -9,31 +9,12 @@
    @include width-height(100%, auto);
    @include flexbox(row, flex-start, center, 2rem);
    padding: 1.25rem;
-   background-color: var(--clr-background-2);
+   background: var(--clr-background-2);
    border-radius: 1.5rem;
    border: transparent;
 }
 
-button {
-   box-shadow: 0px 16px 40px 0px rgba(143, 160, 193, 0.14);
-   cursor: pointer;
-}
 
-.option {
-   @include width-height(3.5rem, 3.5rem);
-   background-color: var(--clr-background-1);
-   @include flexbox(column, center, center, 0);
-}
 
-.submit-btn {
-   @include width-height(100%, auto);
-   @include flexbox(column, center, center, 0);
-   padding: 2rem;
-   margin-top: 2rem;
-   border-radius: 1.5rem;
-   background-color: var(--clr-neutral-1);
-}
 
-.submit-btn h1{
-   color: var(--clr-background-2);
-}
+

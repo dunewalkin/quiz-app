@@ -1,0 +1,42 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.options-section {
+   position: relative;
+}
+
+.option {
+   @include width-height(3.5rem, 3.5rem);
+   background-color: var(--clr-background-1);
+   @include flexbox(column, center, center, 0);
+}
+
+.submit-btn {
+   position: relative;
+   @include width-height(100%, auto);
+   @include flexbox(column, center, center, 0);
+   padding: 2rem;
+   margin-top: 2rem;
+   border-radius: 1.5rem;
+   background: var(--clr-neutral-1);
+   border: transparent;
+
+   &:hover,:focus-visible {
+      background: var(--clr-neutral-1);
+      opacity: .5;
+   }
+}
+
+.submit-btn h1 {
+   color: var(--clr-background-2);
+}
+
+.error-message {
+   @include width-height(100%, auto);
+   @include position (absolute, auto, auto, -4rem, auto);
+   @include flexbox(row, center, center, .5rem);
+}
+
+.error-message p{
+   color: var(--clr-neutral-3);
+}
