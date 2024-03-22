@@ -46,6 +46,7 @@ function App() {
          setSelectedOption(null);
          setSubmitClicked(false);
          }
+         setShowErrorMessage(false);
       } else {
          // Если пользователь не выбрал ответ, вы можете вывести сообщение или предпринять другие действия
          setShowErrorMessage(true);
