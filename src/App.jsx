@@ -9,6 +9,7 @@ function App() {
   const [quizButtonsVisible, setQuizButtonsVisible] = useState(true);
   const [selectedOption, setSelectedOption] = useState(null); // Состояние для хранения выбранной пользователем опции
   const [submitClicked, setSubmitClicked] = useState(false); // Состояние для отслеживания нажатия на кнопку "Submit"
+  const [showErrorMessage, setShowErrorMessage] = useState(false); // Состояние для отображения сообщения об ошибке
 
   const handleQuizSelection = (quiz) => {
     setSelectedQuiz(quiz);
@@ -16,6 +17,7 @@ function App() {
     setQuizButtonsVisible(false);
     setSelectedOption(null); // Сброс выбранной опции при выборе нового теста
     setSubmitClicked(false); // Сброс состояния нажатия на кнопку "Submit" при выборе нового теста
+    setShowErrorMessage(false); // Скрытие сообщения об ошибке при выборе нового теста
   };
 
   const handleOptionSelect = (option) => {
@@ -41,9 +43,11 @@ function App() {
         setSelectedOption(null);
         setSubmitClicked(false);
       }
+      // Скрытие сообщения об ошибке, если оно отображено
+      setShowErrorMessage(false);
     } else {
-      // Если пользователь не выбрал ответ, вы можете вывести сообщение или предпринять другие действия
-      console.log("Выберите ответ перед переходом к следующему вопросу");
+      // Если пользователь не выбрал ответ, показываем сообщение об ошибке
+      setShowErrorMessage(true);
     }
   };
 
@@ -70,16 +74,24 @@ function App() {
               key={index} 
               onClick={() => handleOptionSelect(option)}
             >
-            {String.fromCharCode(65 + index)}. {option}
+              {String.fromCharCode(65 + index)}. {option}
             </button>
           ))}
         </div>
       )}
       {!quizButtonsVisible && (
-        <button onClick={handleNextQuestion}>{submitClicked ? "Next Question" : "Submit"}</button>
+        <div>
+          <button onClick={handleNextQuestion}>{submitClicked ? "Next Question" : "Submit"}</button>
+          {showErrorMessage && (
+            <div className='error-message'>
+              <p>Please select an answer</p>
+            </div>
+          )}
+        </div>
       )}
     </main>   
   );
 }
 
 export default App;
+
