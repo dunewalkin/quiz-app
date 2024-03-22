@@ -70,7 +70,7 @@ function App() {
               key={index} 
               onClick={() => handleOptionSelect(option)}
             >
-              {option}
+            {String.fromCharCode(65 + index)}. {option}
             </button>
           ))}
         </div>
