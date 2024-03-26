@@ -93,6 +93,14 @@ function App() {
           ))}
         </div>
       )}
+
+      <div className='range-wrapper'>
+         <div 
+            className='range-progress'
+            style={inputStyle}>
+         </div>
+      </div>
+
       {!quizButtonsVisible && (
         <div>
           <button onClick={handleNextQuestion}>{submitClicked ? "Next Question" : "Submit"}</button>
