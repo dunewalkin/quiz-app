@@ -13,13 +13,16 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const calculateProgress = () => {
-      const newProgress = ((currentQuestionIndex + 1) / selectedQuiz.questions.length) * 100;
-      setProgress(newProgress);
-    };
-
-    calculateProgress();
-  }, [currentQuestionIndex, selectedQuiz.questions.length]);
+   const calculateProgress = () => {
+     if (selectedQuiz) {
+       const newProgress = ((currentQuestionIndex + 1) / selectedQuiz.questions.length) * 100;
+       setProgress(newProgress);
+     }
+   };
+ 
+   calculateProgress();
+ }, [currentQuestionIndex, selectedQuiz]);
+ 
 
   const inputStyle = {
    width: `${progress}%`
