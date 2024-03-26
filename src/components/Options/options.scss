@@ -37,6 +37,20 @@
    @include flexbox(row, center, center, .5rem);
 }
 
-.error-message p{
+.error-message p {
    color: var(--clr-neutral-3);
+}
+
+.range-wrapper {
+   margin-top: 10rem;
+   @include width-height(100%, 1rem);
+   background: var(--clr-background-2);
+   border-radius: 1rem;
+   padding: 0.25rem;
+}
+
+.range-progress {
+   background: var(--clr-neutral-1);
+   height: 0.5rem;
+   border-radius: 0.5rem;
 }
