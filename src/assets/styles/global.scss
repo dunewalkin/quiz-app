@@ -165,4 +165,70 @@ p {
    border-radius: 0.5rem;
 }
 
+.active {
+   border: 3px solid var(--clr-neutral-1);
+
+   .option {
+      background: var(--clr-neutral-1);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-1);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
+
+.correct {
+   border: 3px solid var(--clr-neutral-2);
+
+   .option {
+      background: var(--clr-neutral-2);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-2);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
+
+.not-correct {
+   border: 3px solid var(--clr-neutral-3);
+
+   .option {
+      background: var(--clr-neutral-3);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-3);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
+
 
