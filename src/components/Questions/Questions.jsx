@@ -5,17 +5,15 @@ const Questions = ({ selectedQuiz, currentQuestionIndex }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const calculateProgress = () => {
-      const newProgress = ((currentQuestionIndex + 1) / selectedQuiz.questions.length) * 100;
-      setProgress(newProgress);
-    };
-
-    calculateProgress();
-  }, [currentQuestionIndex, selectedQuiz.questions.length]);
-
-  const inputStyle = {
-   width: `${progress}%`
-  };
+   const calculateProgress = () => {
+     if (selectedQuiz) {
+       const newProgress = ((currentQuestionIndex + 1) / selectedQuiz.questions.length) * 100;
+       setProgress(newProgress);
+     }
+   };
+ 
+   calculateProgress();
+ }, [currentQuestionIndex, selectedQuiz]);
 
   return (
     <div>
@@ -27,7 +25,7 @@ const Questions = ({ selectedQuiz, currentQuestionIndex }) => {
             <div className='range-wrapper'>
                <div 
                   className='range-progress'
-                  style={inputStyle}>
+                  style={{width: `${progress}%`}}>
                </div>
             </div>
          </div>

@@ -2,13 +2,14 @@ import React from 'react';
 import iconError from '../../assets/images/icon-error.svg';
 import './options.scss';
 
-const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizButtonsVisible, handleOptionSelect, submitClicked, showErrorMessage }) => {
+const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizButtonsVisible, handleOptionSelect, submitClicked, showErrorMessage, selectedOption }) => {
   return (
    <div className='options-section'>
       {selectedQuiz && (
          <div className="quiz-buttons">
             {selectedQuiz.questions[currentQuestionIndex].options.map((option, index) => (
-            <button className='quiz-button'
+            <button 
+               className={`quiz-button ${selectedOption === option ? 'active' : ''}`}
                key={index} 
                onClick={() => handleOptionSelect(option)}
             > 

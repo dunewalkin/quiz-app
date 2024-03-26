@@ -77,6 +77,7 @@ function App() {
          handleOptionSelect={handleOptionSelect}
          submitClicked={submitClicked}
          showErrorMessage={showErrorMessage}
+         selectedOption={selectedOption}
          />
       </div>
            

@@ -8,13 +8,87 @@
 .quiz-button {
    @include width-height(100%, auto);
    @include flexbox(row, flex-start, center, 2rem);
-   padding: 1.25rem;
+   padding:1rem 1.25rem;
    background: var(--clr-background-2);
    border-radius: 1.5rem;
-   border: transparent;
+   border: 3px solid var(--clr-background-2);
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-icon-background-4);
+
+         h1 {
+            color: var(--clr-neutral-1);
+         }
+      }
+   }
 }
 
+.active {
+   border: 3px solid var(--clr-neutral-1);
 
+   .option {
+      background: var(--clr-neutral-1);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-1);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
+
+.correct {
+   border: 3px solid var(--clr-neutral-2);
+
+   .option {
+      background: var(--clr-neutral-2);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-2);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
+
+.not-correct {
+   border: 3px solid var(--clr-neutral-3);
+
+   .option {
+      background: var(--clr-neutral-3);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-3);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
 
 
 
