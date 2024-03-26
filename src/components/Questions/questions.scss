@@ -4,3 +4,17 @@
 .question-section h1 {
    margin-top: 1.69rem;
 } 
+
+.range-wrapper {
+   margin-top: 10rem;
+   @include width-height(100%, 1rem);
+   background: var(--clr-background-2);
+   border-radius: 1rem;
+   padding: 0.25rem;
+}
+
+.range-progress {
+   background: var(--clr-neutral-1);
+   height: 0.5rem;
+   border-radius: 0.5rem;
+}
