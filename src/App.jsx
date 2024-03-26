@@ -10,6 +10,20 @@ function App() {
   const [selectedOption, setSelectedOption] = useState(null); // Состояние для хранения выбранной пользователем опции
   const [submitClicked, setSubmitClicked] = useState(false); // Состояние для отслеживания нажатия на кнопку "Submit"
   const [showErrorMessage, setShowErrorMessage] = useState(false); // Состояние для отображения сообщения об ошибке
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const calculateProgress = () => {
+      const newProgress = ((currentQuestionIndex + 1) / selectedQuiz.questions.length) * 100;
+      setProgress(newProgress);
+    };
+
+    calculateProgress();
+  }, [currentQuestionIndex, selectedQuiz.questions.length]);
+
+  const inputStyle = {
+   width: `${progress}%`
+  };
 
   const handleQuizSelection = (quiz) => {
     setSelectedQuiz(quiz);
