@@ -1,40 +1,41 @@
-import React, { useState } from 'react';
-import './assets/styles/fonts.scss'
-import './assets/styles/global.scss'
+import React, { useState, useEffect } from 'react';
+import './assets/styles/fonts.scss';
+import './assets/styles/global.scss';
 import data from '../data.json';
 
 function App() {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quizButtonsVisible, setQuizButtonsVisible] = useState(true);
-  const [selectedOption, setSelectedOption] = useState(null); // Состояние для хранения выбранной пользователем опции
-  const [submitClicked, setSubmitClicked] = useState(false); // Состояние для отслеживания нажатия на кнопку "Submit"
-  const [showErrorMessage, setShowErrorMessage] = useState(false); // Состояние для отображения сообщения об ошибке
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [submitClicked, setSubmitClicked] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [buttonsDisabled, setButtonsDisabled] = useState(false);
+  const [resultDisplayed, setResultDisplayed] = useState(false);
 
   useEffect(() => {
-   const calculateProgress = () => {
-     if (selectedQuiz) {
-       const newProgress = ((currentQuestionIndex + 1) / selectedQuiz.questions.length) * 100;
-       setProgress(newProgress);
-     }
-   };
- 
-   calculateProgress();
- }, [currentQuestionIndex, selectedQuiz]);
- 
+    const calculateProgress = () => {
+      if (selectedQuiz) {
+        const newProgress = ((currentQuestionIndex + 1) / selectedQuiz.questions.length) * 100;
+        setProgress(newProgress);
+      }
+    };
+
+    calculateProgress();
+  }, [currentQuestionIndex, selectedQuiz]);
 
   const inputStyle = {
-   width: `${progress}%`
+    width: `${progress}%`
   };
 
   const handleQuizSelection = (quiz) => {
     setSelectedQuiz(quiz);
     setCurrentQuestionIndex(0);
     setQuizButtonsVisible(false);
-    setSelectedOption(null); // Сброс выбранной опции при выборе нового теста
-    setSubmitClicked(false); // Сброс состояния нажатия на кнопку "Submit" при выборе нового теста
-    setShowErrorMessage(false); // Скрытие сообщения об ошибке при выборе нового теста
+    setSelectedOption(null);
+    setSubmitClicked(false);
+    setShowErrorMessage(false);
   };
 
   const handleOptionSelect = (option) => {
@@ -42,28 +43,23 @@ function App() {
   };
 
   const handleNextQuestion = () => {
-    // Проверка, выбрана ли какая-либо опция перед переходом к следующему вопросу
     if (selectedOption !== null) {
-      // Проверка ответа и вывод сообщения в консоль
-      if (selectedOption === selectedQuiz.questions[currentQuestionIndex].answer) {
-        console.log("Ответ правильный");
-      } else {
-        console.log("Ответ неправильный");
+      if (!resultDisplayed) {
+        setResultDisplayed(true);
       }
-      // Если кнопка "Submit" еще не была нажата, меняем ее текст на "Next Question"
+
+      setButtonsDisabled(true);
       if (!submitClicked) {
         setSubmitClicked(true);
       } else {
-        // Если кнопка "Submit" уже была нажата, переходим к следующему вопросу
         setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-        // Сброс состояния выбранной опции и состояния нажатия на кнопку "Submit"
+        setButtonsDisabled(false);
         setSelectedOption(null);
         setSubmitClicked(false);
+        setResultDisplayed(false);
       }
-      // Скрытие сообщения об ошибке, если оно отображено
       setShowErrorMessage(false);
     } else {
-      // Если пользователь не выбрал ответ, показываем сообщение об ошибке
       setShowErrorMessage(true);
     }
   };
@@ -72,36 +68,47 @@ function App() {
     <main className="main-container">
       {quizButtonsVisible && (
         <div className="quiz-buttons">
-         {data.quizzes.map((quiz, index) => (
-            <button 
-               key={index} 
-               className="quiz-button" 
-               onClick={() => handleQuizSelection(quiz)}>
-               <img src={quiz.icon} alt={quiz.title} />
-               <h1 className='heading-xs'>{quiz.title}</h1>
-            </button>
-         ))}
-        </div>
-      )}
-      {selectedQuiz && (
-        <div className="selected-quiz">
-          <h2>{selectedQuiz.questions[currentQuestionIndex].question}</h2>
-          {selectedQuiz.questions[currentQuestionIndex].options.map((option, index) => (
-            <button 
-              key={index} 
-              onClick={() => handleOptionSelect(option)}
-            >
-              {String.fromCharCode(65 + index)}. {option}
+          {data.quizzes.map((quiz, index) => (
+            <button
+              key={index}
+              className="quiz-button"
+              onClick={() => handleQuizSelection(quiz)}>
+              <img src={quiz.icon} alt={quiz.title} />
+              <h1 className='heading-xs'>{quiz.title}</h1>
             </button>
           ))}
         </div>
       )}
+      {selectedQuiz && (
+        <div className="quiz-buttons">
+         <h2>{selectedQuiz.questions[currentQuestionIndex].question}</h2>
+          {selectedQuiz.questions[currentQuestionIndex].options.map((option, index) => {
+            const isActive = selectedOption === option;
+            const isCorrect = resultDisplayed && isActive && option === selectedQuiz.questions[currentQuestionIndex].answer;
+            const isIncorrect = resultDisplayed && isActive && option !== selectedQuiz.questions[currentQuestionIndex].answer;
+
+            return (
+              <button
+                className={`quiz-button ${isActive ? 'active' : ''} ${isCorrect ? 'correct' : ''} ${isIncorrect ? 'not-correct' : ''}`}
+                key={index}
+                onClick={() => handleOptionSelect(option)}
+                disabled={buttonsDisabled}
+              >
+                <div className='option'>
+                  <h1 className='heading-xs'>{String.fromCharCode(65 + index)}</h1>
+                </div>
+                <h1 className='heading-xs'>{option}</h1>
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       <div className='range-wrapper'>
-         <div 
-            className='range-progress'
-            style={inputStyle}>
-         </div>
+        <div
+          className='range-progress'
+          style={inputStyle}>
+        </div>
       </div>
 
       {!quizButtonsVisible && (
@@ -114,9 +121,8 @@ function App() {
           )}
         </div>
       )}
-    </main>   
+    </main>
   );
 }
 
 export default App;
-
