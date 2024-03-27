@@ -13,6 +13,8 @@ function App() {
    const [selectedOption, setSelectedOption] = useState(null); // Состояние для хранения выбранной пользователем опции
    const [submitClicked, setSubmitClicked] = useState(false); // Состояние для отслеживания нажатия на кнопку "Submit"
    const [showErrorMessage, setShowErrorMessage] = useState(false);
+   const [buttonsDisabled, setButtonsDisabled] = useState(false);
+   const [resultDisplayed, setResultDisplayed] = useState(false);
 
    const handleQuizSelection = (quiz) => {
       setSelectedQuiz(quiz);
@@ -31,11 +33,18 @@ function App() {
       // Проверка, выбрана ли какая-либо опция перед переходом к следующему вопросу
       if (selectedOption !== null) {
          // Проверка ответа и вывод сообщения в консоль
-         if (selectedOption === selectedQuiz.questions[currentQuestionIndex].answer) {
-         console.log("Ответ правильный");
-         } else {
-         console.log("Ответ неправильный");
-         }
+         // if (selectedOption === selectedQuiz.questions[currentQuestionIndex].answer) {
+         // console.log("Ответ правильный");
+         // } else {
+         // console.log("Ответ неправильный");
+         // }
+
+         if (!resultDisplayed) {
+            setResultDisplayed(true);
+          }
+    
+          setButtonsDisabled(true);
+
          // Если кнопка "Submit" еще не была нажата, меняем ее текст на "Next Question"
          if (!submitClicked) {
          setSubmitClicked(true);
@@ -45,6 +54,7 @@ function App() {
          // Сброс состояния выбранной опции и состояния нажатия на кнопку "Submit"
          setSelectedOption(null);
          setSubmitClicked(false);
+         setResultDisplayed(false);
          }
          setShowErrorMessage(false);
       } else {
@@ -78,6 +88,8 @@ function App() {
          submitClicked={submitClicked}
          showErrorMessage={showErrorMessage}
          selectedOption={selectedOption}
+         buttonsDisabled={buttonsDisabled}
+         resultDisplayed={resultDisplayed}
          />
       </div>
            
@@ -86,4 +98,6 @@ function App() {
 }
 
 export default App;
+
+
 
