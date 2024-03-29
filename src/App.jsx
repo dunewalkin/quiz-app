@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './assets/styles/fonts.scss'
 import './assets/styles/global.scss'
 import Welcome from './components/Welcome/Welcome';
@@ -15,6 +15,7 @@ function App() {
    const [showErrorMessage, setShowErrorMessage] = useState(false);
    const [buttonsDisabled, setButtonsDisabled] = useState(false);
    const [resultDisplayed, setResultDisplayed] = useState(false);
+   const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
 
    const handleQuizSelection = (quiz) => {
       setSelectedQuiz(quiz);
@@ -41,7 +42,7 @@ function App() {
 
          if (!resultDisplayed) {
             setResultDisplayed(true);
-          }
+         }
     
           setButtonsDisabled(true);
 
@@ -52,9 +53,11 @@ function App() {
          // Если кнопка "Submit" уже была нажата, переходим к следующему вопросу
          setCurrentQuestionIndex(prevIndex => prevIndex + 1);
          // Сброс состояния выбранной опции и состояния нажатия на кнопку "Submit"
+         setButtonsDisabled(false);
          setSelectedOption(null);
          setSubmitClicked(false);
          setResultDisplayed(false);
+         setCorrectOptionIndex(null);
          }
          setShowErrorMessage(false);
       } else {
@@ -63,6 +66,15 @@ function App() {
          console.log("Выберите ответ перед переходом к следующему вопросу");
       }
    };
+
+   useEffect(() => {
+      if (resultDisplayed) {
+        const correctAnswer = selectedQuiz.questions[currentQuestionIndex].answer;
+        const newCorrectOptionIndex = selectedQuiz.questions[currentQuestionIndex].options.findIndex(option => option === correctAnswer);
+        setCorrectOptionIndex(newCorrectOptionIndex);
+      }
+    }, [resultDisplayed, currentQuestionIndex, selectedQuiz]);
+
 
   return (
     <main className="main-container">
@@ -90,6 +102,7 @@ function App() {
          selectedOption={selectedOption}
          buttonsDisabled={buttonsDisabled}
          resultDisplayed={resultDisplayed}
+         correctOptionIndex={correctOptionIndex}
          />
       </div>
            

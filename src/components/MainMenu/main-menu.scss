@@ -12,6 +12,7 @@
    background: var(--clr-background-2);
    border-radius: 1.5rem;
    border: 3px solid var(--clr-background-2);
+   // text-align: start;
 
    &:hover,:focus-visible {
       .option {
@@ -22,6 +23,17 @@
          }
       }
    }
+}
+
+.quiz-button[disabled]:not(.correct):not(.not-correct):hover,
+.quiz-button[disabled]:not(.correct):not(.not-correct):focus-visible {
+  .option {
+    background: var(--clr-background-1);
+
+    h1 {
+      color: var(--clr-primary-1);
+    }
+  }
 }
 
 .active {
@@ -48,6 +60,7 @@
 
 .correct {
    border: 3px solid var(--clr-neutral-2);
+   justify-content: space-between;
 
    .option {
       background: var(--clr-neutral-2);
@@ -55,6 +68,10 @@
       h1{
          color: var(--clr-background-2);
       }
+   }
+
+   .correct-icon {
+      display: block;
    }
 
    &:hover,:focus-visible {
@@ -70,6 +87,7 @@
 
 .not-correct {
    border: 3px solid var(--clr-neutral-3);
+   justify-content: space-between;
 
    .option {
       background: var(--clr-neutral-3);
@@ -77,6 +95,10 @@
       h1{
          color: var(--clr-background-2);
       }
+   }
+
+   .not-correct-icon {
+      display: block;
    }
 
    &:hover,:focus-visible {
@@ -88,6 +110,22 @@
          }
       }
    }
+}
+
+.show-correct-answer {
+   justify-content: space-between;
+
+   .correct-icon {
+      display: block;
+   }
+}
+
+.correct-icon {
+   display: none;
+}
+
+.not-correct-icon {
+   display: none;
 }
 
 
