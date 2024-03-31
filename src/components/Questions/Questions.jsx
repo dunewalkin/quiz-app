@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './questions.scss';
 
-const Questions = ({ selectedQuiz, currentQuestionIndex }) => {
+const Questions = ({ selectedQuiz, currentQuestionIndex, allResultDisplayed }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Questions = ({ selectedQuiz, currentQuestionIndex }) => {
 
   return (
     <div>
-      {selectedQuiz && (
+      {selectedQuiz && !allResultDisplayed &&(
         <div className='question-section'>
             <p className='body-s'>{`Question ${currentQuestionIndex + 1} of ${selectedQuiz.questions.length}`}</p>
             <h1 className='heading-s'>{selectedQuiz.questions[currentQuestionIndex].question}</h1>

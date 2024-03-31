@@ -5,6 +5,8 @@ import Welcome from './components/Welcome/Welcome';
 import MainMenu from './components/MainMenu/MainMenu';
 import Questions from './components/Questions/Questions';
 import Options from './components/Options/Options';
+import Results from './components/Results/Results';
+import ResultsSummary from './components/ ResultsSummary/ ResultsSummary';
 
 function App() {
    const [selectedQuiz, setSelectedQuiz] = useState(null);
@@ -16,6 +18,8 @@ function App() {
    const [buttonsDisabled, setButtonsDisabled] = useState(false);
    const [resultDisplayed, setResultDisplayed] = useState(false);
    const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
+   const [allResultDisplayed, setAllResultDisplayed] = useState(false);
+   const [correctAnswersCount, setCorrectAnswersCount] = useState(0); // Состояние для подсчета правильных ответов
 
    const handleQuizSelection = (quiz) => {
       setSelectedQuiz(quiz);
@@ -24,6 +28,7 @@ function App() {
       setSelectedOption(null); // Сброс выбранной опции при выборе нового теста
       setSubmitClicked(false); // Сброс состояния нажатия на кнопку "Submit" при выборе нового теста
       setShowErrorMessage(false);
+      setCorrectAnswersCount(0); // Сброс количества правильных ответов при выборе нового теста
    };
 
    const handleOptionSelect = (option) => {
@@ -31,20 +36,22 @@ function App() {
    };
 
    const handleNextQuestion = () => {
-      // Проверка, выбрана ли какая-либо опция перед переходом к следующему вопросу
       if (selectedOption !== null) {
-         // Проверка ответа и вывод сообщения в консоль
-         // if (selectedOption === selectedQuiz.questions[currentQuestionIndex].answer) {
-         // console.log("Ответ правильный");
-         // } else {
-         // console.log("Ответ неправильный");
-         // }
 
          if (!resultDisplayed) {
             setResultDisplayed(true);
+
+            if (selectedOption === selectedQuiz.questions[currentQuestionIndex].answer) {
+               setCorrectAnswersCount(prevCount => prevCount + 1); // Увеличить количество правильных ответов
+               console.log(correctAnswersCount);
+            }  
+         }
+
+         if (currentQuestionIndex === selectedQuiz.questions.length - 1) {
+            setAllResultDisplayed(true); // Показать результаты теста после ответа на последний вопрос
          }
     
-          setButtonsDisabled(true);
+         setButtonsDisabled(true);
 
          // Если кнопка "Submit" еще не была нажата, меняем ее текст на "Next Question"
          if (!submitClicked) {
@@ -80,10 +87,18 @@ function App() {
     <main className="main-container">
        
       <div className='left-side'>
-      {quizButtonsVisible && (
-         <Welcome />
-      )}
-         <Questions selectedQuiz={selectedQuiz} currentQuestionIndex={currentQuestionIndex}/>
+         {quizButtonsVisible && (
+            <Welcome />
+         )}
+            <Questions 
+               selectedQuiz={selectedQuiz}
+               currentQuestionIndex={currentQuestionIndex}
+               allResultDisplayed={allResultDisplayed}
+            />
+
+         {allResultDisplayed && (
+            <Results />
+         )}
       </div>
 
       <div className='right-side'>
@@ -91,19 +106,27 @@ function App() {
             <MainMenu handleQuizSelection={handleQuizSelection}/>
          )}
 
-         <Options 
-         selectedQuiz={selectedQuiz} 
-         currentQuestionIndex={currentQuestionIndex} 
-         handleNextQuestion={handleNextQuestion}
-         quizButtonsVisible={quizButtonsVisible}
-         handleOptionSelect={handleOptionSelect}
-         submitClicked={submitClicked}
-         showErrorMessage={showErrorMessage}
-         selectedOption={selectedOption}
-         buttonsDisabled={buttonsDisabled}
-         resultDisplayed={resultDisplayed}
-         correctOptionIndex={correctOptionIndex}
-         />
+            <Options 
+               selectedQuiz={selectedQuiz} 
+               currentQuestionIndex={currentQuestionIndex} 
+               handleNextQuestion={handleNextQuestion}
+               quizButtonsVisible={quizButtonsVisible}
+               handleOptionSelect={handleOptionSelect}
+               submitClicked={submitClicked}
+               showErrorMessage={showErrorMessage}
+               selectedOption={selectedOption}
+               buttonsDisabled={buttonsDisabled}
+               resultDisplayed={resultDisplayed}
+               correctOptionIndex={correctOptionIndex}
+               allResultDisplayed={allResultDisplayed}
+            />
+
+         {allResultDisplayed && (
+            <ResultsSummary
+            selectedQuiz={selectedQuiz}
+            correctAnswersCount={correctAnswersCount}
+            />
+         )}
       </div>
            
     </main>   

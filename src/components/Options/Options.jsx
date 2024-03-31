@@ -4,7 +4,7 @@ import './options.scss';
 import correctIcon from '../../assets/images/icon-correct.svg'
 import notCorrectIcon from '../../assets/images/icon-error.svg';
 
-const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizButtonsVisible, handleOptionSelect, submitClicked, showErrorMessage, selectedOption, buttonsDisabled, resultDisplayed,correctOptionIndex }) => {
+const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizButtonsVisible, handleOptionSelect, submitClicked, showErrorMessage, selectedOption, buttonsDisabled, resultDisplayed,correctOptionIndex, allResultDisplayed }) => {
 
    // const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
 
@@ -12,7 +12,7 @@ const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizB
 
   return (
     <div className='options-section'>
-      {selectedQuiz && (
+      {selectedQuiz && !allResultDisplayed && (
         <div className="quiz-buttons">
           {selectedQuiz.questions[currentQuestionIndex].options.map((option, index) => {
             const isActive = selectedOption === option;
@@ -27,25 +27,25 @@ const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizB
                 disabled={buttonsDisabled}
               >
 
-                <div className='option-wrapper'>
+               <div className='option-wrapper'>
                   <div className='option'>
-                    <h1 className='heading-xs'>{String.fromCharCode(65 + index)}</h1>
+                     <h1 className='heading-xs'>{String.fromCharCode(65 + index)}</h1>
                   </div>
                   <h1 className='heading-xs'>{option}</h1>
-                </div>
-                <div className='correct-icon'>
+               </div>
+               <div className='correct-icon'>
                   <img src={correctIcon} alt="Correct Icon" />
-                </div>
-                <div className='not-correct-icon'>
+               </div>
+               <div className='not-correct-icon'>
                   <img src={notCorrectIcon} alt="Not correct Icon" />
-                </div>
+               </div>
 
               </button>
             );
           })}
         </div>
       )}
-      {!quizButtonsVisible && (
+      {!quizButtonsVisible && !allResultDisplayed && (
         <button
           className='submit-btn'
           onClick={handleNextQuestion}>
