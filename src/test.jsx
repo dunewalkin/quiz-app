@@ -48,11 +48,16 @@ function App() {
    const handleNextQuestion = () => {
      if (selectedOption !== null) {
        if (!resultDisplayed) {
+         setResultDisplayed(true);
+
          if (selectedOption === selectedQuiz.questions[currentQuestionIndex].answer) {
             setCorrectAnswersCount(prevCount => prevCount + 1); // Увеличить количество правильных ответов
             console.log(correctAnswersCount);
-          }      
-          setResultDisplayed(true);
+          }   
+       }
+ 
+       if (currentQuestionIndex === selectedQuiz.questions.length - 1) {
+         setAllResultDisplayed(true); // Показать результаты теста после ответа на последний вопрос
        }
      
        setButtonsDisabled(true);
@@ -64,13 +69,8 @@ function App() {
          setSelectedOption(null);
          setSubmitClicked(false);
          setResultDisplayed(false);
-
-         if (currentQuestionIndex === selectedQuiz.questions.length - 1) {
-            setAllResultDisplayed(true); // Показать результаты теста после ответа на последний вопрос
-          }
        }
        setShowErrorMessage(false);
-       
      } else {
        setShowErrorMessage(true);
      }
@@ -129,10 +129,8 @@ function App() {
  
        {!quizButtonsVisible && !allResultDisplayed && (
          <div>
-            <button onClick={handleNextQuestion} className='submit-btn'>
-               {submitClicked ? (currentQuestionIndex === selectedQuiz.questions.length - 1 ? "Show Results" : "Next Question") : "Submit"}
-            </button>
-               {showErrorMessage && (
+           <button onClick={handleNextQuestion} className='submit-btn'>{submitClicked ? "Next Question" : "Submit"}</button>
+           {showErrorMessage && (
              <div className='error-message'>
                <p>Please select an answer</p>
              </div>
@@ -152,4 +150,36 @@ function App() {
  }
  
  export default App;
+
+
+
+ const handleNextQuestion = () => {
+   if (selectedOption !== null) {
+     if (!resultDisplayed) {
+       if (selectedOption === selectedQuiz.questions[currentQuestionIndex].answer) {
+         setCorrectAnswersCount(prevCount => prevCount + 1); // Увеличить количество правильных ответов
+       }
+       setResultDisplayed(true);
+     }
+ 
+     setButtonsDisabled(true);
+     if (!submitClicked) {
+       setSubmitClicked(true);
+     } else {
+       setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+       setButtonsDisabled(false);
+       setSelectedOption(null);
+       setSubmitClicked(false);
+       setResultDisplayed(false);
+       
+       // Установить allResultDisplayed только после ответа на последний вопрос
+       if (currentQuestionIndex === selectedQuiz.questions.length - 1) {
+         setAllResultDisplayed(true); // Показать результаты теста после ответа на последний вопрос
+       }
+     }
+     setShowErrorMessage(false);
+   } else {
+     setShowErrorMessage(true);
+   }
+ };
  
