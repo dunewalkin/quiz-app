@@ -1,16 +1,23 @@
 @use '../../assets/styles/mixins.scss' as *;
 @import '../../assets/styles/variables';
 
-.quiz-buttons {
-   @include flexbox(column, flex-start, flex-start, 1.5rem);
+.quiz-logo-wrapper {
+   @include width-height(3.5rem, 3.5rem);
+   @include flexbox(row, center, center, 0);
+
+   border-radius: .7rem;
+
+   @include mq (small) {
+      @include width-height(2.5rem, 2.5rem);
+   }
 }
 
-.quiz-button {
-   @include width-height(100%, auto);
-   @include flexbox(row, flex-start, center, 2rem);
-   padding: 1.25rem;
-   background-color: var(--clr-background-2);
-   border-radius: 1.5rem;
-   border: transparent;
-   cursor: pointer;
+.quiz-logo {
+   @include width-height(2.5rem, 2.5rem);
+
+   @include mq (small) {
+      @include width-height(1.78569rem, 1.78569rem);
+   }
 }
+
+

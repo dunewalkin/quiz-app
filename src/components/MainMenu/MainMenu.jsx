@@ -2,15 +2,21 @@ import React from 'react';
 import data from '../../../data.json';
 import './main-menu.scss';
 
-const MainMenu = ( {handleQuizSelection} ) => {
+const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
+
    return (
       <div className="quiz-buttons">
          {data.quizzes.map((quiz, index) => (
             <button 
                key={index} 
                className="quiz-button" 
-               onClick={() => handleQuizSelection(quiz)}>
-               <img src={quiz.icon} alt={quiz.title} />
+               onClick={() => handleQuizSelection(quiz)}
+            >
+               <div className={`quiz-logo-wrapper ${backgroundClasses[quiz.title]}`}>
+                  <div className='quiz-logo'>
+                     <img src={quiz.icon} alt={quiz.title} />
+                  </div>
+               </div>
                <h1 className='heading-xs'>{quiz.title}</h1>
             </button>
          ))}

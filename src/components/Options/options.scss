@@ -1,0 +1,54 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.options-section {
+   position: relative;
+}
+
+.option-wrapper {
+   @include flexbox(row, flex-start, center, 2rem);
+   text-align: start;
+
+   @include mq (small) {
+      @include flexbox(row, flex-start, center, 1rem);
+   }
+}
+
+.option {
+   min-width: 3.5rem;
+   height: 3.5rem;
+   border-radius: 0.7rem;
+   background-color: var(--clr-grey);
+   @include flexbox(column, center, center, 0);
+   transition: .2s ease;
+
+   @include mq (small) {
+      min-width: 2.5rem;
+      height: 2.5rem;
+   }
+}
+
+.option h1 {
+   color: var(--clr-grey-navy);
+}
+
+.error-message {
+   @include width-height(100%, auto);
+   margin-top: 2rem;
+   @include flexbox(row, center, center, .5rem);
+
+   @include mq (small) {
+      margin-top: 1.19rem;
+   }
+}
+
+.error-message p {
+   color: var(--clr-neutral-3);
+}
+
+
+
+
+
+
+

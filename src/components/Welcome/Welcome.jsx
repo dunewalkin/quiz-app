@@ -4,7 +4,7 @@ import './welcome.scss';
 const Welcome = () => {
   return (
       <div className="welcome-section">
-         <div className='welcome-header'>
+         <div className='header'>
             <h1 className='heading-m'>Welcome to the</h1>
             <h2 className='heading-l'>Frontend Quiz!</h2>
          </div>
