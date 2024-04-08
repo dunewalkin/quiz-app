@@ -16,7 +16,7 @@ const Questions = ({ selectedQuiz, currentQuestionIndex, allResultDisplayed }) =
  }, [currentQuestionIndex, selectedQuiz]);
 
   return (
-    <div>
+   <>
       {selectedQuiz && !allResultDisplayed &&(
         <div className='question-section'>
             <p className='body-s'>{`Question ${currentQuestionIndex + 1} of ${selectedQuiz.questions.length}`}</p>
@@ -30,7 +30,7 @@ const Questions = ({ selectedQuiz, currentQuestionIndex, allResultDisplayed }) =
             </div>
          </div>
       )}
-    </div>
+   </>
   );
 };
 

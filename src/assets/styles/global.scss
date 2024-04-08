@@ -40,6 +40,8 @@ ul {
    padding: 0;
 }
 
+// Typography
+
 .heading-xl {
    font-family: Rubik, sans-serif;
    font-size: 9rem;
@@ -95,8 +97,12 @@ ul {
    font-weight: 500;
    line-height: 100%; 
 
+   @include mq (medium) {
+      font-size: 1.75rem;
+   }
+
    @include mq (small) {
-      font-size: 0.875rem;
+      font-size: 1.125rem;;
    }
  }
 
@@ -107,8 +113,12 @@ p {
    line-height: 150%;
    color: var(--clr-primary-2);
 
-   @include mq (small) {
+   @include mq (medium) {
       font-size: 1.125rem;
+   }
+
+   @include mq (small) {
+      font-size: 0.875rem;
    }
 }
 
@@ -118,43 +128,159 @@ p {
    font-weight: 400;
    line-height: 150%; 
    color: var(--clr-primary-2);
+
+   @include mq (medium) {
+      font-size: 1.125rem;
+   }
+
+   @include mq (small) {
+      font-size: 0.875rem;
+   }
 }
 
- body {
-   font-family: Rubik,sans-serif;
-   background: var(--clr-background-1);
-   background-image: url(../images/pattern-background-desktop-light.svg);
- }
+// light/dark variables
 
- button {
-   box-shadow: 0px 16px 40px 0px rgba(143, 160, 193, 0.14);
+body {
+   font-family: Rubik,sans-serif;
+   background-color: var(--clr-background-1);
+   background-image: var(--theme-desk);
+   background-repeat: no-repeat;
+   transition: background-color 1.5s ease;
+}
+
+body.light {
+   --clr-primary-1: hsl(216, 25%, 25%, 1); 
+   --clr-primary-2: hsl(219, 13%, 44%, 1);
+   --clr-background-1: hsl(220, 38%, 97%, 1); 
+   --clr-background-2: hsl(0, 0%, 100%, 1); 
+
+   --theme-desk: url(../images/pattern-background-desktop-light.svg);
+   transition: 1.5s ease;
+
+   @include mq (medium) {
+      --theme-desk: url(../images/pattern-background-tablet-light.svg);
+   }
+
+   @include mq (small) {
+      --theme-desk: url(../images/pattern-background-mobile-light.svg);
+   }
+
+   button {
+      --box-shadow: 0px 16px 40px 0px rgba(143, 160, 193, 0.14);
+   }
+}
+
+body.dark {
+   --clr-primary-1: hsl(0, 0%, 100%); 
+   --clr-primary-2: hsl(216, 47%, 78%, 1);
+   --clr-background-1: hsl(216, 25%, 25%, 1); 
+   --clr-background-2: hsl(216, 27%, 32%, 1);
+
+   --theme-desk: url(../images/pattern-background-desktop-dark.svg);
+   transition: 1.5s ease;
+
+   @include mq (medium) {
+      --theme-desk: url(../images/pattern-background-tablet-dark.svg);
+   }
+
+   @include mq (small) {
+      --theme-desk: url(../images/pattern-background-mobile-dark.svg);
+   }
+
+   button {
+      --box-shadow: 0px 16px 40px 0px rgba(49, 62, 81, 0.14);
+   }
+}
+
+button {
+   box-shadow: var(--box-shadow);
    cursor: pointer;
    transition: .2s ease;
 }
 
 
 #root {
-   @include width-height(100%, 100%);
+   @include width-height(100%, 100vh);
    @include flexbox(column, center, center, 0);
-   // width: 100%;
-   // min-height: 100vh;
+   padding: 1.5rem;
+
+   @include mq (large) {
+      height: auto;
+   }
+
+   @include mq (medium) {
+      padding: 2.5rem 4rem 3.5rem;
+   }
 
    @include mq (small) {
-      height: auto;
+      padding: 1rem 1.5rem;
    }
  }
 
 .main-container {
-   width: 72.3125rem;
-   @include flexbox(row, space-between, flex-start, 0);
+   @include width-height(100%, auto);
+   max-width: 72.3125rem;
+   @include flexbox(column, flex-start, center, 5rem);
+
+   @include mq (medium) {
+      max-width: none;
+      @include flexbox(column, flex-start, center, 3rem);
+
+   @include mq (small) {
+      @include flexbox(column, flex-start, center, 2rem);
+   }
+   }
 }
 
-.left-side {
-   width: 29.0625rem;
+.main-wrapper {
+   @include width-height(100%, auto);
+   @include flexbox(row, space-between, flex-start, 2rem);
+
+   @include mq (medium) {
+      @include flexbox(column, flex-start, flex-start, 4rem);
+   }
+
+   @include mq (small) {
+      @include flexbox(column, flex-start, flex-start, 2.5rem);
+   }
 }
 
-.right-side {
-   width: 35.25rem;
+.first-section {
+   @include width-height(100%, auto);
+   max-width: 29.0625rem;
+   animation: slideInLeft .5s ease forwards;
+   opacity: 0;
+
+   @include mq (medium) {
+      max-width: none
+   }
 }
 
+.second-section {
+   @include width-height(100%, auto);
+   max-width: 35.25rem;
+   animation: slideInRight .5s ease forwards;
+   animation-delay: .5s;
+   opacity: 0;
+
+   @include mq (medium) {
+      max-width: none
+   }
+}
+
+.html-background {
+   background: var(--clr-icon-background-1);
+}
+
+.css-background {
+   background: var(--clr-icon-background-2);
+}
+
+.js-background {
+   background: var(--clr-icon-background-3);
+}
+
+.access-background {
+   background: var(--clr-icon-background-4);
+}
 

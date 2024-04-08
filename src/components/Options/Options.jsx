@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import iconError from '../../assets/images/icon-error.svg';
 import './options.scss';
 import correctIcon from '../../assets/images/icon-correct.svg'
@@ -6,9 +6,14 @@ import notCorrectIcon from '../../assets/images/icon-error.svg';
 
 const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizButtonsVisible, handleOptionSelect, submitClicked, showErrorMessage, selectedOption, buttonsDisabled, resultDisplayed,correctOptionIndex, allResultDisplayed }) => {
 
-   // const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
+   const errorMessageRef = useRef(null);
 
- 
+   useEffect(() => {
+      if (showErrorMessage && errorMessageRef.current) {
+         errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+   }, [showErrorMessage]);
+
 
   return (
     <div className='options-section'>
@@ -49,12 +54,12 @@ const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizB
         <button
           className='submit-btn'
           onClick={handleNextQuestion}>
-          <h1 className='heading-xs'>{submitClicked ? "Next Question" : "Submit Answer"}</h1>
+          <h1 className='heading-xs'>{submitClicked ? (currentQuestionIndex === selectedQuiz.questions.length - 1 ? "Show Results" : "Next Question") : "Submit Answer"}</h1>
         </button>
       )}
 
       {showErrorMessage && (
-        <div className='error-message'>
+        <div className='error-message' ref={errorMessageRef}>
           <img src={iconError} alt="Error icon" />
           <p>Please select an answer</p>
         </div>

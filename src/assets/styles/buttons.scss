@@ -1,0 +1,172 @@
+@use './mixins.scss' as *;
+@import './variables';
+
+// quiz buttons
+
+.quiz-buttons {
+   @include flexbox(column, flex-start, flex-start, 1.5rem);
+
+   @include mq (small) {
+      @include flexbox(column, flex-start, flex-start, 0.75rem);
+   }
+}
+
+.quiz-button {
+   @include width-height(100%, auto);
+   @include flexbox(row, flex-start, center, 2rem);
+   padding:1rem 1.25rem;
+   background: var(--clr-background-2);
+   border-radius: 1.5rem;
+   border: 3px solid var(--clr-background-2);
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-icon-background-4);
+
+         h1 {
+            color: var(--clr-neutral-1);
+         }
+      }
+   }
+
+   @include mq (medium) {
+      padding: 0.75rem;
+   }
+
+   @include mq (small) {
+      @include flexbox(row, flex-start, center, 1rem);
+      border-radius: 0.75rem;
+   }
+}
+
+.quiz-button[disabled]:not(.correct):not(.not-correct):hover,
+.quiz-button[disabled]:not(.correct):not(.not-correct):focus-visible {
+  .option {
+    background: var(--clr-grey);
+
+    h1 {
+      color: var(--clr-grey-navy);
+    }
+  }
+}
+
+.active {
+   border: 3px solid var(--clr-neutral-1);
+
+   .option {
+      background: var(--clr-neutral-1);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-1);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
+
+.correct {
+   border: 3px solid var(--clr-neutral-2);
+   justify-content: space-between;
+
+   .option {
+      background: var(--clr-neutral-2);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   .correct-icon {
+      display: block;
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-2);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
+
+.not-correct {
+   border: 3px solid var(--clr-neutral-3);
+   justify-content: space-between;
+
+   .option {
+      background: var(--clr-neutral-3);
+
+      h1{
+         color: var(--clr-background-2);
+      }
+   }
+
+   .not-correct-icon {
+      display: block;
+   }
+
+   &:hover,:focus-visible {
+      .option {
+         background: var(--clr-neutral-3);
+   
+         h1{
+            color: var(--clr-background-2);
+         }
+      }
+   }
+}
+
+.show-correct-answer {
+   justify-content: space-between;
+
+   .correct-icon {
+      display: block;
+   }
+}
+
+.correct-icon {
+   display: none;
+}
+
+.not-correct-icon {
+   display: none;
+}
+
+
+// submit button
+
+.submit-btn {
+   position: relative;
+   @include width-height(100%, auto);
+   @include flexbox(column, center, center, 0);
+   padding: 2rem;
+   margin-top: 2rem;
+   border-radius: 1.5rem;
+   background: var(--clr-neutral-1);
+   border: transparent;
+
+   &:hover,:focus-visible {
+      background: var(--clr-neutral-1);
+      opacity: .5;
+   }
+
+   @include mq (small) {
+      padding: 1.19rem;
+      border-radius: 0.75rem;
+      margin-top: 0.75rem;
+   }
+}
+
+.submit-btn h1 {
+   color: hsl(var(--clr-white));
+}

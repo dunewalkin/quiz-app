@@ -4,4 +4,8 @@
 .header {
    @include flexbox(column, flex-start, flex-start, 0.5rem);
    margin-bottom: 3rem;
+
+   @include mq (small) {
+      margin-bottom: 1rem;
+   }
 }

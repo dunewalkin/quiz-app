@@ -8,44 +8,44 @@
 .option-wrapper {
    @include flexbox(row, flex-start, center, 2rem);
    text-align: start;
-}
 
-.option {
-   @include width-height(3.5rem, 3.5rem);
-   background-color: var(--clr-background-1);
-   @include flexbox(column, center, center, 0);
-   transition: .2s ease;
-}
-
-.submit-btn {
-   position: relative;
-   @include width-height(100%, auto);
-   @include flexbox(column, center, center, 0);
-   padding: 2rem;
-   margin-top: 2rem;
-   border-radius: 1.5rem;
-   background: var(--clr-neutral-1);
-   border: transparent;
-
-   &:hover,:focus-visible {
-      background: var(--clr-neutral-1);
-      opacity: .5;
+   @include mq (small) {
+      @include flexbox(row, flex-start, center, 1rem);
    }
 }
 
-.submit-btn h1 {
-   color: var(--clr-background-2);
+.option {
+   min-width: 3.5rem;
+   height: 3.5rem;
+   border-radius: 0.7rem;
+   background-color: var(--clr-grey);
+   @include flexbox(column, center, center, 0);
+   transition: .2s ease;
+
+   @include mq (small) {
+      min-width: 2.5rem;
+      height: 2.5rem;
+   }
+}
+
+.option h1 {
+   color: var(--clr-grey-navy);
 }
 
 .error-message {
    @include width-height(100%, auto);
-   @include position (absolute, auto, auto, -4rem, auto);
+   margin-top: 2rem;
    @include flexbox(row, center, center, .5rem);
+
+   @include mq (small) {
+      margin-top: 1.19rem;
+   }
 }
 
 .error-message p {
    color: var(--clr-neutral-3);
 }
+
 
 
 
