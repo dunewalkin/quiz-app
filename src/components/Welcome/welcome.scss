@@ -1,7 +1,11 @@
 @use '../../assets/styles/mixins.scss' as *;
 @import '../../assets/styles/variables';
 
-.welcome-header {
+.header {
    @include flexbox(column, flex-start, flex-start, 0.5rem);
    margin-bottom: 3rem;
+
+   @include mq (small) {
+      margin-bottom: 1rem;
+   }
 }
