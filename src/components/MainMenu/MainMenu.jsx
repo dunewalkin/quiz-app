@@ -15,7 +15,7 @@ const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
             >
                <div className={`quiz-logo-wrapper ${backgroundClasses[quiz.title]}`}>
                   <div className='quiz-logo'>
-                     <img src={icons[quiz.title.toLowerCase()]} alt={quiz.title} />
+                     <img src={icons[quiz.title.toLowerCase()]} alt={`Icon ${selectedQuiz.title}`} />
                   </div>
                </div>
                <h1 className='heading-xs'>{quiz.title}</h1>

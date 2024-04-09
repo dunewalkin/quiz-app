@@ -60,7 +60,7 @@ const Options = ({ selectedQuiz, currentQuestionIndex, handleNextQuestion, quizB
 
       {showErrorMessage && (
         <div className='error-message' ref={errorMessageRef}>
-          <img src={iconError} alt="Error icon" />
+          <img src={iconError} alt="Error Icon" />
           <p>Please select an answer</p>
         </div>
       )}

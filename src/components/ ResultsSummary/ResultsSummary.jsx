@@ -14,7 +14,7 @@ const  ResultsSummary = ({ correctAnswersCount, selectedQuiz, backgroundClasses 
             <div className='current-quiz'>
                <div className={`quiz-logo-wrapper ${backgroundClasses[selectedQuiz.title]}`}>
                   <div className='quiz-logo'>
-                     <img src={icons[selectedQuiz.title.toLowerCase()]} alt={selectedQuiz.title} />
+                     <img src={icons[selectedQuiz.title.toLowerCase()]} alt={`Icon ${selectedQuiz.title}`} />
                   </div>
                </div>
                <h1 className='heading-xs'>{selectedQuiz.title}</h1>
