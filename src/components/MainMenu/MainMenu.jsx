@@ -1,11 +1,6 @@
 import React from 'react';
 import data from '../../data.json';
-// import data from '../../../data.json';
 import './main-menu.scss';
-// import htmlIcon from '../../assets/images/icon-html.svg';
-// import CssIcon from '../../assets/images/icon-html.svg';
-// import javascriptIcon from '../../assets/images/icon-html.svg';
-// import accessibilityIcon from '../../assets/images/icon-html.svg';
 import icons from '../../imageImports';
 
 const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
