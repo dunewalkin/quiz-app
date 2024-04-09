@@ -15,7 +15,7 @@ const Header = ({ toggleTheme, theme, selectedQuiz, backgroundClasses, quizButto
          <div className='current-quiz'>
             <div className={`quiz-logo-wrapper ${backgroundClasses[selectedQuiz.title]}`}>
                <div className='quiz-logo'>
-                  <img src={icons[quiz.title.toLowerCase()]} alt={quiz.title} />
+                  <img src={icons[selectedQuiz.title.toLowerCase()]} alt={selectedQuiz.title} />
                </div>
             </div>
             <h1 className='heading-xs'>{selectedQuiz.title}</h1>
