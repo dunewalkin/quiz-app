@@ -1,5 +1,6 @@
 import React from 'react';
 import './results-summary.scss';
+import icons from '../../imageImports';
 
 const  ResultsSummary = ({ correctAnswersCount, selectedQuiz, backgroundClasses }) => {
    
@@ -13,7 +14,7 @@ const  ResultsSummary = ({ correctAnswersCount, selectedQuiz, backgroundClasses 
             <div className='current-quiz'>
                <div className={`quiz-logo-wrapper ${backgroundClasses[selectedQuiz.title]}`}>
                   <div className='quiz-logo'>
-                     <img src={selectedQuiz.icon} alt={selectedQuiz.title} />
+                     <img src={icons[selectedQuiz.title.toLowerCase()]} alt={selectedQuiz.title} />
                   </div>
                </div>
                <h1 className='heading-xs'>{selectedQuiz.title}</h1>
