@@ -6,7 +6,7 @@ import './main-menu.scss';
 // import CssIcon from '../../assets/images/icon-html.svg';
 // import javascriptIcon from '../../assets/images/icon-html.svg';
 // import accessibilityIcon from '../../assets/images/icon-html.svg';
-import { htmlIcon, cssIcon, jsIcon, accessibilityIcon } from '../../imageImports';
+import icons from '../../imageImports';
 
 const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
 
@@ -19,11 +19,8 @@ const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
                onClick={() => handleQuizSelection(quiz)}
             >
                <div className={`quiz-logo-wrapper ${backgroundClasses[quiz.title]}`}>
-               <div className='quiz-logo'>
-                     {quiz.title === 'HTML' && <img src={htmlIcon} alt={quiz.title} />}
-                     {quiz.title === 'CSS' && <img src={cssIcon} alt={quiz.title} />}
-                     {quiz.title === 'JavaScript' && <img src={jsIcon} alt={quiz.title} />}
-                     {quiz.title === 'Accessibility' && <img src={accessibilityIcon} alt={quiz.title} />}
+                  <div className='quiz-logo'>
+                     <img src={icons[quiz.title.toLowerCase()]} alt={quiz.title} />
                   </div>
                </div>
                <h1 className='heading-xs'>{quiz.title}</h1>
@@ -34,3 +31,6 @@ const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
 }
 
 export default MainMenu
+
+
+
