@@ -7,7 +7,7 @@ import MainMenu from './components/MainMenu/MainMenu';
 import Questions from './components/Questions/Questions';
 import Options from './components/Options/Options';
 import Results from './components/Results/Results';
-import ResultsSummary from './components/ ResultsSummary/ ResultsSummary';
+import ResultsSummary from './components/ ResultsSummary/ResultsSummary';
 import Header from './components/Header/Header';
 
 
