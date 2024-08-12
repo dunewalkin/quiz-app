@@ -3,7 +3,7 @@ import data from '../../data.json';
 import './main-menu.scss';
 import icons from '../../imageImports';
 
-const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
+const MainMenu = ({ handleQuizSelection, backgroundClasses, selectedQuiz }) => {
 
    return (
       <div className="quiz-buttons">
@@ -15,7 +15,10 @@ const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
             >
                <div className={`quiz-logo-wrapper ${backgroundClasses[quiz.title]}`}>
                   <div className='quiz-logo'>
-                     <img src={icons[quiz.title.toLowerCase()]} alt={`Icon ${selectedQuiz.title}`} />
+                     <img 
+                        src={icons[quiz.title.toLowerCase()]} 
+                        alt={`Icon ${selectedQuiz ? selectedQuiz.title : quiz.title}`} 
+                     />
                   </div>
                </div>
                <h1 className='heading-xs'>{quiz.title}</h1>
@@ -25,7 +28,8 @@ const MainMenu = ({ handleQuizSelection, backgroundClasses }) => {
    )
 }
 
-export default MainMenu
+export default MainMenu;
+
 
 
 

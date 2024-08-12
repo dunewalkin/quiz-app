@@ -140,12 +140,13 @@ function App() {
             </div>
 
             <div className='second-section'>
-            {quizButtonsVisible && (
-               <MainMenu 
-                  handleQuizSelection={handleQuizSelection}
-                  backgroundClasses={backgroundClasses}
-               />
-            )}
+               {quizButtonsVisible && (
+                  <MainMenu 
+                     selectedQuiz={selectedQuiz} 
+                     handleQuizSelection={handleQuizSelection}
+                     backgroundClasses={backgroundClasses}
+                  />
+               )}
 
                <Options 
                   selectedQuiz={selectedQuiz} 
